@@ -15,7 +15,7 @@ Web client module for ZSockets (using WebSocket protocol)
     <script src="https://cdn.jsdelivr.net/gh/ZAUB1/zsockets-webclient@master/socket.js"></script>
 
     <script>
-        const WClient = new WebSocketClient("localhost", 8080);
+        const WClient = new WebSocketWebClient("localhost", 8080);
 
         WClient.On("connected", () => {
             console.log("Connected to server");
