@@ -1,37 +1,37 @@
 class WebSocketClient {
-	constructor(ip, port, cb)
-	{
-		this.ws = new WebSocket("ws://" + ip + ":" + toString(port));
+    constructor(ip, port, cb)
+    {
+        this.ws = new WebSocket("ws://" + ip + ":" + port);
 
-		this.events = [];
-		this.events["connected"] = [];
-		this.events["disconnected"] = [];
+        this.events = [];
+        this.events["connected"] = [];
+        this.events["disconnected"] = [];
 
-		this.ws.onopen(() => {
-			this.Event("connected");
-		});
+        this.ws.onopen = () => {
+            this.Event("connected");
+        };
 
-		this.ws.onclose(() => {
-			this.Event("disconnected");
-		});
+        this.ws.onclose = () => {
+            this.Event("disconnected");
+        };
 
-		this.ws.onmessage((evt) => {
-			try
-			{
-				const jdata = JSON.parse(evt.data);
-				this.Event(jdata.n, jdata.obj);
-			}
-			catch
-			{
-				//
-			}
-		});
+        this.ws.onmessage = (evt) => {
+            try
+            {
+                const jdata = JSON.parse(evt.data);
+                this.Event(jdata.n, jdata.obj);
+            }
+            catch
+            {
+                //
+            }
+        };
 
-		if (cb)
-			cb();
-	}
+        if (cb)
+            cb();
+    }
 
-	OnInternal(n, cb)
+    On(n, cb)
     {
         if (this.events[n])
         {
@@ -58,6 +58,6 @@ class WebSocketClient {
 
     Emit(n, obj)
     {
-    	this.ws.send(JSON.stringify({n: n, obj: obj}));
+        this.ws.send(JSON.stringify({n: n, obj: obj}));
     }
 }
