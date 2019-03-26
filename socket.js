@@ -1,4 +1,4 @@
-class WebSocketClient {
+class WebSocketWebClient {
     constructor(ip, port, cb)
     {
         this.ws = new WebSocket("ws://" + ip + ":" + port);
