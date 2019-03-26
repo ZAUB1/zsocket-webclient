@@ -1,7 +1,7 @@
 class WebSocketClient {
 	constructor(ip, port, cb)
 	{
-		this.ws = new WebSocket(ip + ":" + toString(port));
+		this.ws = new WebSocket("ws://" + ip + ":" + toString(port));
 
 		this.events = [];
 		this.events["connected"] = [];
